@@ -1,0 +1,49 @@
+plugins {
+    id 'org.springframework.boot' version '3.3.1'
+    id 'io.spring.dependency-management' version '1.1.5'
+    id 'java'
+}
+
+group = 'pro'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+    implementation 'org.projectlombok:lombok'
+    implementation 'org.springframework.boot:spring-boot-starter-web' // Spring Boot Web Starter
+    implementation 'mysql:mysql-connector-java:8.0.28' // MySQL JDBC 드라이버 버전 명시
+
+    implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.0'
+    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    implementation 'javax.servlet:jstl:1.2' // (Optional) 구버전 JSTL도 함께 추가할 수 있음
+
+    // implementation 'javax.servlet:jstl:1.2' // JSTL 못찾음
+    // implementation 'jakarta.servlet:jstl:3.0.1' // Jakarta JSTL
+    // implementation 'javax.servlet:jstl'
+    // implementation 'org.apache.tomcat.embed:tomcat-embed-jasper' // Embed Tomcat for JSP support
+
+    // Spring Boot DevTools - 개발 중 빠른 반영을 위해 사용
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // 테스트 관련 의존성
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+    // 다른 필요한 의존성들을 추가할 수 있음
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

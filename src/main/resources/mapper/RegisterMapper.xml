@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pro.dao.RegisterDao">
+
+    <insert id="signup" parameterType="pro.dto.UserDto">
+        INSERT INTO user (username, password, email, reg_date)
+        VALUES (#{username}, #{password}, #{email}, NOW())
+    </insert>
+
+    <select id="Logincheck" parameterType="map">
+        SELECT count(*)
+        FROM user
+        where username = #{username}
+    </select>
+
+    <select id="Emailcheck" parameterType="map">
+        SELECT count(*)
+        FROM user
+        where email = #{email}
+    </select>
+
+</mapper>
